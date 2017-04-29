@@ -3,6 +3,7 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+request.setCharacterEncoding("UTF-8");
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -86,7 +87,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	}
   	#div-right p{
   		padding-left:100px;
+  		width:60%;
+  		height:66px;
+  		line-height:22px;
   		overflow:hidden;
+  		text-overflow:clip;
   		display:block;
   	}
   	
@@ -140,8 +145,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		<c:forEach items="${articleList }" var="a">
   			<article>
   				<header>
-  					<h2 ><a href="">${a.title }</a></h2><br>
-  					<p overflow:hidden>${a.content }</p><br>
+  				
+  					<h2 ><a href="${pageContext.request.contextPath }/article_show.action?title=${ a.title}">${a.title }</a></h2><br>
+  					<p>${a.content }</p><br>
   					<span class="time"><time datetime="2017-03-23">${a.wtime }</time></span>
   				</header>
   			</article><br><br><br>
@@ -151,6 +157,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			<a href="">留言</a>
   		</div>
   </body>
+  		 
   <script type="text/javascript">
 /*   window.onload=function(){
 		

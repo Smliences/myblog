@@ -41,4 +41,10 @@ public class ArticleAction extends ActionSupport implements ModelDriven<Article>
 			
 		return NONE;
 	}
+	
+	public String show() throws Exception{
+		Article existArticle = articleService.findByTitle(article);
+		ServletActionContext.getRequest().getSession().setAttribute("article", existArticle);
+		return "sarticle";
+	}
 }

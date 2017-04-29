@@ -25,4 +25,8 @@ public void save(Article article) {
 public List<Article> find() {
 	return articleDao.find();
 }
+
+public Article findByTitle(Article article) {
+	return articleDao.findByArticle(article);
+}
 }
