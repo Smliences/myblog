@@ -42,8 +42,8 @@ request.setCharacterEncoding("UTF-8");
   </head>
   
   <body>
-  <div id="form">
-  	<form action="${pageContext.request.contextPath }/article_save.action">
+  <div id="form" method="post">
+  	<form action="${pageContext.request.contextPath }/article_save.action?">
   	标题：<input id="title" type="text" name="title" required><br><br>
   	<div class="content">
 				<p class="content_p">正文</p>

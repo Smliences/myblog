@@ -21,6 +21,29 @@
   			org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
 		</filter-class>
   </filter>
+  <filter>  
+  <filter-name>SetCharacterEncodingFilter</filter-name>  
+  <!-- 过滤器设置编码文件 -->  
+  <filter-class>  
+cn.myblog.ssh.filter.SetCharacterEncodingFilter  
+</filter-class>  
+  <init-param>  
+      <!--  
+       init-param元素定义了过滤器的初始化参数 
+       -->  
+   <description>给参数和值设置名称和编码类型</description>  
+   <param-name>encode</param-name>  
+   <param-value>UTF-8</param-value>  
+  </init-param>  
+ </filter>  
+ <filter-mapping>  
+  <!--   
+   filter-mapping告诉容器所有与模式向匹配的请求都应该允许通过访问控制过滤器。  
+   所有以.do结尾的访问都先通过过滤器文件过滤   
+  -->  
+  <filter-name>SetCharacterEncodingFilter</filter-name>  
+  <url-pattern>*.action</url-pattern>  
+ </filter-mapping>  
   <filter-mapping>
     <filter-name>struts2</filter-name>
     <url-pattern>*.action</url-pattern>
