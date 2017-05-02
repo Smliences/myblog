@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -42,14 +43,20 @@ request.setCharacterEncoding("UTF-8");
   </head>
   
   <body>
-  <div id="form" method="post">
-  	<form action="${pageContext.request.contextPath }/article_save.action?">
+  <div id="form">
+<%--   	<s:form action="${pageContext.request.contextPath }/article_save" method="post">
+  		<s:textfield id="title" name="title"></s:textfield>
+  		<s:textarea id="content" name="content"></s:textarea>
+  			<s:submit value="submit"/>
+  	</s:form> --%>
+  	<form action="${pageContext.request.contextPath }/article_save.action" method="post">
   	标题：<input id="title" type="text" name="title" required><br><br>
   	<div class="content">
 				<p class="content_p">正文</p>
 				<textarea id="content" cols="100" rows="40" name="content"></textarea>
 			</div>
   		<input type="submit" value="提交">
+  	
   	</form>
   	</div>
   </body>

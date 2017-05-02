@@ -157,7 +157,21 @@ request.setCharacterEncoding("UTF-8");
   			<a href="">留言</a>
   		</div>
   </body>
-  		 
+  	<div id="form" style="display:none;">
+  		<div id="lj">
+  			来说两句
+  		</div>
+  		<form action="" method="post">
+  			<textarea rows="268px" cols="150px" name="comment" placeholder="评论内容"></textarea>
+  			<div id="lxfs">
+  				留个联系方式吧
+  			</div>
+  			<div id="form-name"><input id="name" name="name" type="text"></div>
+  			<div id="form-email"><input id="email" name="email" type="text"></div>
+  			<div id="form-buttom"><intput id="buttom" type="submit" value="保存评论"></div>
+  			<input name="">
+  		</form>
+  	</div>
   <script type="text/javascript">
 /*   window.onload=function(){
 		
@@ -186,8 +200,15 @@ request.setCharacterEncoding("UTF-8");
 			}
 			t = setInterval(change,20000);
 		});
-
+		$(function(){
 		
+		});
+		             function blockDiv(){
+               var div = document.getElementById("hiddenDiv").style.display;               if(div=='none'){
+                  document.getElementById("hiddenDiv").style.display='block';
+                 }else{
+                    document.getElementById("hiddenDiv").style.display='none';
+                }
   
 
   </script>
