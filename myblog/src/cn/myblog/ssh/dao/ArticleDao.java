@@ -27,8 +27,8 @@ public class ArticleDao {
 		return null;
 	}
 
-	public Article findByArticle(Article article) {
-		List<Article> list = (List<Article>) hibernateTemplate.find("from Article where title=?",article.getTitle());
+	public Article findByAid(Article article) {
+		List<Article> list = (List<Article>) hibernateTemplate.find("from Article where aid=?",article.getAid());
 		if(list!=null&&list.size()>0)
 			return list.get(0);
 		return null;

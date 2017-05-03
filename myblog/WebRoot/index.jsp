@@ -46,6 +46,10 @@ request.setCharacterEncoding("UTF-8");
   		height:100%
   		background-image: no-repeat;
   	}
+  	#div-left #message{
+  	padding-top:10px;
+  	font-size: 18px;
+  	}
   	#div-left .text{
   		padding-top:100px;
   		text-align:center;
@@ -53,13 +57,13 @@ request.setCharacterEncoding("UTF-8");
   		width: 100%;
   		height:86.75%;
         left:0; 
-        font-size:20;
+        font-size:20px;
         background-color: rgba(0,0,0,0.3); 
         color:  rgba(255, 255, 255, 0.8);
         
   	}
   	a{
-  	text-decoration:none;
+  		text-decoration:none;
   	}
   	#div-left a{
   		color:rgba(255, 255, 255, 0.8);
@@ -83,7 +87,7 @@ request.setCharacterEncoding("UTF-8");
   		color:black;
   	}
   	#div-right a{
-  	padding-left:100px;
+  		padding-left:100px;
   	}
   	#div-right p{
   		padding-left:100px;
@@ -97,7 +101,7 @@ request.setCharacterEncoding("UTF-8");
   	
   	#div-right .time{
   		padding-left:100px;
-  		font-size: 6;
+  		font-size: 10px;
   		color:grey;
   	} 
   	
@@ -110,43 +114,118 @@ request.setCharacterEncoding("UTF-8");
   	}
   	
   	.fixed_img{
-    bottom:450px;
-    display:block;
-    position:fixed;
-    right:10px;
-    height:60px;
-    width:60px;
-}
+    	bottom:450px;
+    	display:block;
+    	position:fixed;
+    	right:10px;
+    	height:60px;
+    	width:60px;
+	}
 	.fixed {
-	bottom:450px;
-    display:block;
-    position:fixed;
-    right:10px;
-    height:60px;
-    width:60px;
-    background-color: rgba(0,0,0,0.01); 
+		bottom:450px;
+    	display:block;
+    	position:fixed;
+    	right:10px;
+    	height:60px;
+    	width:60px;
+	}
+	
+	.fixed #lmessage{
+		padding-left: 25px;
+		text-align:center;
+	}
+	.msg{
+   		margin-left: 77px;
+		margin-top: 24px;
+		text-align: start;
+	}
+	.msg .cname{
+		margin-top:10px;
+	}
+	.msg .cname p{
+		font-weight:600;
+		font-size:15px;
+	}
+	.msg .ccomment p{
+	margin-top: 6px;
+	font-size:15px;
+	}
+	#form{
+		border: 1px solid #eee;
+		color: #8a8a8a;
+		top:1px;
+   		display:block;
+   		position:fixed;
+  		right:0px;
+  		height:320px;
+    	width: 300px;
+   		background-color: rgba(253, 253, 253, 0.95);
+    	padding: 1.5em 1.25em 1.85em;
+    	font: inherit;
+	}
+	#form div{
+	
+		margin-top:20px;
+	}
+	#form input{
+    	width: 125px;
+    	height: 28px
+	}
+	#lslj{
+		margin-buttom:20px;
+	}
+	
+	#form textarea{
+		width:268px;
+		height:150px;
+	}
+	#ne{
+		display:block;
+	}
+	#form-name{
+		float:left;
+	}
+	#form-email{
+		float: right;
+		margin-left:50px;
+	}
+	#form-button input{
+		background-color: #fff;
+		margin-top: 15px;
+		width:300px;
 	}
   </style>
-  <body>
+  <body >
   		<header>
-  		<div id="div-left">
+  		<div id="div-left" >
   			<div class="text">
-  			<div>
+  				<div>
   			<hgroup>
   				<span id="blog"></span><a href="">博客</a><br>
   				<span>smliences</span>
   			</hgroup>
+  				<div id="message">
+  				<p id="pmessage">
+  					我是一名大三的学生，正在学习javaweb后台，为自己写了一个简单的博客，页面很烂,我也觉得。以后会慢慢变好。
+  				</p>
+  				</div>
+  				<c:forEach items="${list }" var="l">
+  				<div class="msg">
+  					<div class="cname"><p>${l.name }</p></div>
+  					<div class="ccomment"><p>${l.lmessage}</p></div>
+  				</div>
+  				</c:forEach>
   			</div>
   			</div>
   		</div>
   		</header>
   		
-  		<div id="div-right">
+  		<div id="div-right" >
   		<c:forEach items="${articleList }" var="a">
   			<article>
   				<header>
   				
-  					<h2 ><a href="${pageContext.request.contextPath }/article_show.action?title=${ a.title}">${a.title }</a></h2><br>
+  					<h2 ><a href="${pageContext.request.contextPath }/article_show.action?aid=${ a.aid}">${a.title }</a></h2><br>
   					<p>${a.content }</p><br>
   					<span class="time"><time datetime="2017-03-23">${a.wtime }</time></span>
   				</header>
@@ -154,25 +233,28 @@ request.setCharacterEncoding("UTF-8");
   			</c:forEach>
   		
   		<div class="fixed">
-  			<a href="">留言</a>
+  			<a id="lmessage" href="" onclick="blockDiv()">留言</a>
   		</div>
   </body>
-  	<div id="form" style="display:none;">
-  		<div id="lj">
+  	<div id="form" onmouseout="noneDiv()" onmouseover="blockDiv()" style="display:block;">
+  		<div id="lslj">
   			来说两句
   		</div>
-  		<form action="" method="post">
-  			<textarea rows="268px" cols="150px" name="comment" placeholder="评论内容"></textarea>
+  		<div>
+  		<form id="comment" action="${pageContext.request.contextPath }/comment_save.action" method="post">
+  			<textarea rows="268" cols="150" name="lmessage"  placeholder="评论内容"></textarea>
+  		</div>
   			<div id="lxfs">
   				留个联系方式吧
   			</div>
-  			<div id="form-name"><input id="name" name="name" type="text"></div>
-  			<div id="form-email"><input id="email" name="email" type="text"></div>
-  			<div id="form-buttom"><intput id="buttom" type="submit" value="保存评论"></div>
-  			<input name="">
+  			<div id="form-name"><input id="name" name="name" type="text"  placeholder="称呼"></div>
+  			<div id="form-email"><input id="email" name="email" type="text" placeholder="邮箱" ></div>
+  			<div id="form-button"><input id="button" type="submit" value="保存评论"></div>
+  			</div>
   		</form>
   	</div>
   <script type="text/javascript">
+  var title = ${a.title}
 /*   window.onload=function(){
 		
 		var xhr = new XMLHttpRequest();
@@ -190,8 +272,10 @@ request.setCharacterEncoding("UTF-8");
 		xhr.send(null);
 		} */
 		$(function(){
-			$.get('${pageContex.request.contextPath}article_find.action');
+			$.get('${pageContext.request.contextPath}/article_find.action');
+			$.get('${pageContext.request.contextPath}/comment_findAll.action');
 		});
+	
 		$(function(){
 			function change(){
 			var i=parseInt(Math.random()*(4)+1); 
@@ -201,15 +285,24 @@ request.setCharacterEncoding("UTF-8");
 			t = setInterval(change,20000);
 		});
 		$(function(){
-		
+		document.forms["comment"].elements["name"].focus();
 		});
-		             function blockDiv(){
-               var div = document.getElementById("hiddenDiv").style.display;               if(div=='none'){
-                  document.getElementById("hiddenDiv").style.display='block';
-                 }else{
-                    document.getElementById("hiddenDiv").style.display='none';
+		function blockDiv(){
+          	 var div = document.getElementById("form").style.display;               
+           		if(div=='none')
+           		{
+           		document.getElementById("form").style.display='block';
+               				 }
+                 }
+                 
+        function noneDiv(){
+             var div = document.getElementById("form").style.display;               
+               if(div=='block')
+               {
+                    document.getElementById("form").style.display='none';
+            		   }
                 }
   
-
+			
   </script>
 </html>

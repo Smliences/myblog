@@ -11,7 +11,9 @@
 		<action name="article_*" class="articleAction" method="{1}">
 			<result name="sarticle">/sarticle.jsp</result>
 		</action>
-		
+		<action name="comment_*" class="commentAction" method="{1}">
+			<result type="redirect" name="index">/index.jsp</result>
+		</action>
 	</package>
 	
 	

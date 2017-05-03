@@ -26,7 +26,7 @@ public List<Article> find() {
 	return articleDao.find();
 }
 
-public Article findByTitle(Article article) {
-	return articleDao.findByArticle(article);
+public Article findByAid(Article article) {
+	return articleDao.findByAid(article);
 }
 }
